@@ -1,0 +1,31 @@
+@model PWFU.ViewModels.SignInUser
+
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<div class="text-center d-flex align-items-center vh-100">
+    <form class="form-signin card d-block" style="border-radius: 25px;" asp-action="SignIn">
+        <div class="p-md-3">
+            <img class="mb-3" src="~/img/u-funding-logo.jpg" alt="" width="100" height="100">
+            <h1 class="h3 mb-3 fw-normal">Ingresa tus datos</h1>
+
+            <div class="form-floating">
+                <input type="email" class="form-control" asp-for="Email" id="email" placeholder="name@example.com">
+                <label asp-for="Email">Email</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" asp-for="Password" id="password" placeholder="Contraseña">
+                <label asp-for="Password">Contraseña</label>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label asp-for="RememberMe">
+                    <input type="checkbox" asp-for="RememberMe" id="rememberMe"> Remember me
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            <p class="mt-5 mb-3">¿No tienes una cuenta? <a asp-controller="User" asp-action="SignUp">Registrate</a></p>
+        </div>
+    </form>
+</div>
