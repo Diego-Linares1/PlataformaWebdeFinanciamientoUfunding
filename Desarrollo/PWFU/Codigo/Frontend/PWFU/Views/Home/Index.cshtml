@@ -1,0 +1,21 @@
+﻿@model PWFU.ViewModels.GetHomeProjects
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Últimos Proyectos</h1>
+
+<div class="card-group">
+    @foreach (var project in Model.Projects)
+    {
+        <div class="card mt-3" style="max-width: 250px;">
+            <img src="~/img/projects/@project.ImagePath" class="card-img-top" alt=@project.Name >
+            <div class="card-body">
+                <h5 class="card-title">@project.Name</h5>
+                <p class="card-text">@project.ProjectGoal</p>
+                <a asp-action="GetProject" asp-route-id=@project.Id asp-controller="Project" class="btn btn-primary">Ver</a>
+            </div>
+        </div>
+    }
+
+</div>
