@@ -1,0 +1,33 @@
+@model PWFU.ViewModels.SearchProjects
+
+@{
+    ViewData["Title"] = "Busqueda";
+}
+
+<!DOCTYPE html>
+
+<h1>Busqueda</h1>
+
+<div class="card-group">
+    @if(Model.Projects == null || Model.Projects.Count == 0)
+    {
+        <h3 class="text-center" >Se encontraron 0 resultados</h3>
+    }
+    else
+    {
+        @foreach (var project in Model.Projects)
+        {
+            <div class="card mt-3" style="max-width: 250px;">
+                <img src="~/img/projects/@project.ImagePath" class="card-img-top" alt=@project.Name>
+                <div class="card-body">
+                    <h5 class="card-title">@project.Name</h5>
+                    <p class="card-text">@project.ProjectGoal</p>
+                    <a asp-action="GetProject" asp-route-id=@project.Id asp-controller="Project" class="btn btn-primary">Ver</a>
+                </div>
+            </div>
+        }
+    }
+
+
+
+</div>

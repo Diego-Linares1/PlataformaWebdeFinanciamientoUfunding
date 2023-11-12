@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qSCm3qFMgoWh75ZWWgUYVtwqgzIsGRn0sLUNVSzs/mACrrTBOO9ewHKR2pvMU5IVUFzQ/OE33yuspLeGs6ac1Q==",
+  "dgSpecHash": "fYBpgAX1RuEx2h9Aco3N6Mf46kfTtj5alK02Y3BwIB4uc2yY35dY69rCDmJ8SkgzwXeagG3dusjL5G72iewFRg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Diego\\Desktop\\PWFU\\PWFU\\PWFU.csproj",
+  "projectFilePath": "C:\\Users\\Diego\\Desktop\\logicSoft\\Desarrollo\\PWFU\\Codigo\\Frontend\\PWFU\\PWFU.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Diego\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.25\\microsoft.aspnetcore.cryptography.internal.6.0.25.nupkg.sha512",

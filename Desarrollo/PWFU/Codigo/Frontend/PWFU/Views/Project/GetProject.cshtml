@@ -1,0 +1,45 @@
+@model PWFU.ViewModels.GetProject
+
+@{
+    ViewData["Title"] = @Model.Name;
+}
+
+<!DOCTYPE html>
+
+<h1 class="text-center">@Model.Name</h1>
+<h3 class="text-center">@Model.ProjectGoal</h3>
+
+
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-12 col-lg-8 text-center">
+            <img src="~/img/projects/@Model.ImagePath" alt=@Model.Name style="max-height: 500px;"/>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="p-1 bg-warning w-100"></div>
+            <div class="pt-3">
+                <h3 class="fw-bolder text-warning">S/. @Model.Donations.Sum(x => x.Amount).ToString("0.00")</h3>
+                <p>Recaudado</p>
+            </div>
+            <div class="pt-3">
+                <h3 class="fw-bolder text-muted">@Model.Donations.DistinctBy(x => x.UserId).Count()</h3>
+                <p>Financiadores</p>
+            </div>
+            <div class="pt-3">
+                <h3 class="fw-bolder text-muted">S/. @Model.MoneyGoal.ToString("0.00")</h3>
+                <p>Meta</p>
+            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <button class="btn btn-warning mt-3 w-100">Financiar Proyecto</button>
+            }
+            else
+            {
+                <a class="btn btn-warning mt-3 w-100" asp-action="SignUp" asp-controller="User">Registrate para donar</a>
+            }
+            <p class="fs-6 text-muted mt-2">Fecha límite: @Model.DeadLine.ToString("dd/MM/yyyy")</p>
+        </div>
+    </div>
+</div>
+<h2 class="mt-4">Tranfondo</h2>
+<p class="mt-2">@Model.History</p>
