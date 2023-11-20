@@ -11,8 +11,8 @@ app.add_middleware(
     allow_headers=["*"],  # Permitir todos los encabezados
 )
 
-from app.api import route as api_router
-app.include_router(api_router.router)
+from app.api.route import router
+app.include_router(router)
 
 if __name__ == "__main__":
     import uvicorn

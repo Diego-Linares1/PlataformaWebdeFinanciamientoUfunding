@@ -60,7 +60,7 @@ class Project(Base):
     deadline = Column(DateTime, nullable=False)
     bank_account_number = Column(String, nullable=False)
     email_contact = Column(String, nullable=False)
-    project_history_id = Column(String, ForeignKey('project_history.id'), nullable=True)
+    project_history_id = Column(Integer, ForeignKey('project_history.id'), nullable=True)
 
 class Category(Base):
     __tablename__ = "category"
