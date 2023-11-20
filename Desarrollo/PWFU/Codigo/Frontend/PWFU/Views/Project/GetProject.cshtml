@@ -31,13 +31,65 @@
             </div>
             @if (User.Identity.IsAuthenticated)
             {
-                <button class="btn btn-warning mt-3 w-100">Financiar Proyecto</button>
+                <button class="btn btn-warning mt-3 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Financiar Proyecto</button>
             }
             else
             {
                 <a class="btn btn-warning mt-3 w-100" asp-action="SignUp" asp-controller="User">Registrate para donar</a>
             }
             <p class="fs-6 text-muted mt-2">Fecha límite: @Model.DeadLine.ToString("dd/MM/yyyy")</p>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Detalles del Pago</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form asp-action="MakeDonation" asp-controller="Project" asp-route-projectId=@Model.Id id="donation-form" class="form row gx-3">
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Nombre de la Tarjeta</p>
+                                        <input class="form-control mb-3" type="text" placeholder="John Doe" required>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Nro. Tarjeta</p>
+                                        <input class="form-control mb-3" type="text" placeholder="1234 5678 1238 1234" required>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Donación</p>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon3">S/.</span>
+                                            <input type="text" name="amount" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Fecha de Vencimiento</p>
+                                        <input class="form-control mb-3" type="text" placeholder="MM/YYYY" required>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">CVV/CVC</p>
+                                        <input class="form-control mb-3 pt-2 " type="password" placeholder="***" required>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button form="donation-form" type="submit" for class="btn btn-warning">Donar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-muted fs-6 mt-2">Fecha límite de la recaudación: @Model.DeadLine.ToString("dd-MM-yyyy")</p>
+            </div>
         </div>
     </div>
 </div>

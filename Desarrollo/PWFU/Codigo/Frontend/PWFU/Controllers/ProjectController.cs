@@ -121,4 +121,39 @@ public class ProjectController : Controller
 
         return RedirectToAction("Index", "Home");
     }
+
+    public async Task<IActionResult> MakeDonation(float amount, Guid projectId)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == User.Identity!.Name);
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        var project = await _context.Projects.FirstOrDefaultAsync(x => x.Id == projectId);
+        if (project == null)
+        {
+            return NotFound();
+        }
+
+        var donation = new Donation
+        {
+            Amount = amount,
+            ProjectId = projectId,
+            UserId = user.Id,
+            Date = DateTime.Now
+        };
+        try
+        {
+            await _context.Donations.AddAsync(donation);
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception e)
+        {
+            ModelState.AddModelError("", "Ocurrió un error inesperado");
+            return RedirectToAction("GetProject", new {id = projectId});
+        }
+
+        return RedirectToAction("GetProject", new {id = projectId});
+    }
 }
