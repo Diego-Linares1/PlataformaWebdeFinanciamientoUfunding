@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - PWFU</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/PWFU.styles.css" asp-append-version="true"/>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 px-3">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/img/u-funding-logo.jpg" alt="" width="36" height="36" class="d-inline-block align-text-top">
+                U-Funding
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    @if (User.IsInRole("Estudiante"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Project" asp-action="CreateProject">Registrar Proyecto</a>
+                        </li>
+                    }
+
+                </ul>
+                <form class="d-flex" role="search" asp-action="Search" asp-controller="Project">
+                    <input id="keyWord" name="keyWord" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" required>
+                    <button class="btn btn-outline-warning" type="submit">Buscar</button>
+                </form>
+                <ul class="navbar-nav ms-2">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="btn btn-outline-dark" asp-area="" asp-controller="User" asp-action="SignOut">Cerrar Sesión</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active btn btn-outline-primary2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Ingresa
+                            </a>
+                            <ul class="dropdown-menu" style="min-width: 7rem;" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a class="dropdown-item" asp-controller="User" asp-action="SignUp">Sign Up</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="User" asp-action="SignIn">Sing In</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2023 - PWFU - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
